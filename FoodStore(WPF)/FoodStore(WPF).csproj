@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>FoodStore_WPF_</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\butter_croissant.png" />
+    <None Remove="Images\chicken_masala.png" />
+    <None Remove="Images\chicken_tikka_masala.png" />
+    <None Remove="Images\waffle.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\butter_croissant.png" />
+    <Resource Include="Images\chicken_masala.png" />
+    <Resource Include="Images\chicken_tikka_masala.png" />
+    <Resource Include="Images\waffle.png" />
+  </ItemGroup>
+
+</Project>

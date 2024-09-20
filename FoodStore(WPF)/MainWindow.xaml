@@ -1,0 +1,166 @@
+﻿<Window
+    x:Class="FoodStore.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Restaurant Ordering System"
+    Width="1000"
+    Height="600"
+    Background="#f8f9fa">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Column="0"
+            Margin="10"
+            Orientation="Horizontal">
+            <StackPanel Margin="5" Orientation="Vertical">
+                <TextBlock
+                    Margin="0,0,0,5"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Text="Categories" />
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <Button
+                        Margin="5"
+                        Padding="10,5"
+                        Background="#6c757d"
+                        Click="OnCategoryClick"
+                        Content="Signature"
+                        Foreground="White" />
+                    <Button
+                        Margin="5"
+                        Padding="10,5"
+                        Background="#6c757d"
+                        Click="OnCategoryClick"
+                        Content="Croissant"
+                        Foreground="White" />
+                    <Button
+                        Margin="5"
+                        Padding="10,5"
+                        Background="#6c757d"
+                        Click="OnCategoryClick"
+                        Content="Waffle"
+                        Foreground="White" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="20,0,0,0" Orientation="Vertical">
+                <TextBlock
+                    Margin="0,0,0,5"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Text="Sort by:" />
+                <ComboBox
+                    Name="SortComboBox"
+                    Width="150"
+                    SelectionChanged="SortComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Name Ascending" />
+                    <ComboBoxItem Content="Name Descending" />
+                    <ComboBoxItem Content="Price Ascending" />
+                    <ComboBoxItem Content="Price Descending" />
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+        <ListView
+            Name="ProductListView"
+            Grid.Column="0"
+            Margin="10,100,10,10"
+            SelectionChanged="ProductListView_SelectionChanged"
+            SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="5"
+                        BorderBrush="#ced4da"
+                        BorderThickness="1">
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Width="60"
+                                Height="60"
+                                Margin="5"
+                                Source="{Binding ImagePath}" />
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Text="{Binding Name}" />
+                                <TextBlock
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Foreground="#28a745"
+                                    Text="{Binding Price, StringFormat=C}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel
+            Grid.Column="1"
+            Margin="10"
+            Background="White">
+            <TextBlock
+                Margin="0,0,0,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Text="Order Summary" />
+            <ListView
+                Name="OrderListView"
+                Background="#f8f9fa"
+                SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="5"
+                            BorderBrush="#ced4da"
+                            BorderThickness="1">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding ProductName}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Quantity}" />
+                                <TextBlock Grid.Column="2" Text="{Binding Total, StringFormat=C}" />
+                                <Button
+                                    Grid.Column="3"
+                                    Click="IncreaseQuantity_Click"
+                                    Content="+" />
+                                <Button
+                                    Grid.Column="4"
+                                    Click="DecreaseQuantity_Click"
+                                    Content="-" />
+                                <Button
+                                    Grid.Column="5"
+                                    Background="#dc3545"
+                                    Click="RemoveOrder_Click"
+                                    Content="Remove"
+                                    Foreground="White" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <TextBlock
+                Name="TotalTextBlock"
+                Margin="0,10,0,0"
+                FontSize="14"
+                FontWeight="Bold" />
+        </StackPanel>
+    </Grid>
+</Window>
